@@ -10,125 +10,35 @@
 	  </div>
 	{% endfor %}
 {% else %}
-	<header>
-		<div class="icon-bar">
-			<div class="icon" id="icon-1">
-				A
-			</div>
-			<div class="icon" id="icon-2">
-				E
-			</div>
-			<div class="icon" id="icon-3">
-				I
-			</div>
-			<div class="icon" id="icon-4">
-				O
-			</div>
-			<div class="icon" id="icon-5">
-				U
-			</div>
-			<div class="selector" style="left:0px;"></div>
-		</div>
-	</header>
 
-	<div class="viewport">
-		<div class="content-container">
-			<div class="content" id="page-1">
-				{% for product in collections.frontpage.products limit:4 %}
-				  <div>
-				    <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
-				    {{ product.price | money }}
-				    {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
-				    <a href="{{ product.url | within: collection }}">
-				      <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
-				    </a>
-				  </div>
-				{% endfor %}
-			</div>
-			<div class="content" id="page-2">
-				{% for product in collections.menswear.products limit:4 %}
-				  <div>
-				    <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
-				    {{ product.price | money }}
-				    {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
-				    <a href="{{ product.url | within: collection }}">
-				      <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
-				    </a>
-				  </div>
-				{% endfor %}
-			</div>
-			<div class="content" id="page-3">
-				{% for product in collections.womenswear.products limit:4 %}
-				  <div>
-				    <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
-				    {{ product.price | money }}
-				    {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
-				    <a href="{{ product.url | within: collection }}">
-				      <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
-				    </a>
-				  </div>
-				{% endfor %}
-			</div>
-			<div class="content" id="page-4">
-				{% for product in collections.accessories.products limit:4 %}
-				  <div>
-				    <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
-				    {{ product.price | money }}
-				    {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
-				    <a href="{{ product.url | within: collection }}">
-				      <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
-				    </a>
-				  </div>
-				{% endfor %}
-			</div>
-			<div class="content" id="page-5">
-				{% if cart.item_count > 0 %}
-				  <h1>cart</h1>
-				  <form action="/cart" method="post" novalidate>
-				    <table>
-				      <thead>
-				        <th colspan="2">Prod</th>
-				        <th>Price</th>
-				        <th>Qty</th>
-				        <th>total</th>
-				      </thead>
-				      <tbody>
-				        {% for item in cart.items %}
-				          <tr>
-				            <td>
-				              <a href="{{ item.url | within: collections.all }}">
-				                <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
-				              </a>
-				            </td>
-				            <td>
-				              <a href="{{ item.url }}">{{ item.product.title }}</a>
-				              {{ item.variant.title }}
-				              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">remove</a>
-				            </td>
-				            <td>{{ item.price | money }}</td>
-				            <td>
-				              <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
-				            </td>
-				            <td>
-				              {% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
-				              {{ item.line_price | money }}
-				              {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
-				            </td>
-				          </tr>
-				        {% endfor %}
-				      </tbody>
-				    </table>
-				    <div>
-				      <p>sub total : {{ cart.total_price | money }}</p>
-				      <button type="submit" name="update">Update</button>
-				      <button type="submit" name="checkout">Checkout</button>
-				    </div>
-				  </form>
-				{% else %}
-				  <h2>cart</h2>
-				  Cart is empty
-				{% endif %}
-			</div>
-		</div>
-	</div>
+
+	{% for product in collections.frontpage.products limit:4 %}
+	  <div class="product">
+	    
+	    {% for image in product.images %}
+		<img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+		{% endfor %}
+		<h1>{{ product.title }}</h1>
+		<form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+		  <select name="id" id="productSelect">
+		    {% for variant in product.variants %}
+		      {% if variant.available %}
+		        <option value="{{ variant.id }}">
+		          {{ variant.title }} - {{ variant.price | money_with_currency }}
+		        </option>
+		      {% else %}
+		        <option disabled="disabled">
+		          {{ variant.title }} - sold out
+		        </option>
+		      {% endif %}
+		    {% endfor %}
+		  </select>
+		  {{ current_variant.price | money }}
+		  <label for="Quantity">quantity</label>
+		  <input type="number" id="Quantity" name="quantity" value="1" min="1">
+		  <button type="submit" name="add" id="AddToCart">Add to cart</button>
+		</form>
+		<div class="descript">{{ product.description }}</div>
+	  </div>
+	{% endfor %}
 {% endif %}

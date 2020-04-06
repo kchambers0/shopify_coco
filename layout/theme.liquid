@@ -39,9 +39,83 @@
   {% endif %}
 {% endif %}
 
+<header>
+    <div style="height:50px; text-align:center;">
+      <img src="{{'logo.jpg' | asset_url}}" style="height:50px;"/>
+    </div>
+    
+    <div class="icon-bar">
+    {% for link in linklists.main-menu.links %}
+      {% assign child_list_handle = link.title | handleize %}
+      {% if linklists[child_list_handle].links != blank %}
+        <div class="icon" id="icon-1">
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        </div>
+        [{% for childlink in linklists[child_list_handle].links %}
+          <div class="icon" id="icon-1">
+            <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+          </div>
+        {% endfor %}]
+      {% else %}
+        <div class="icon" id="icon-1">
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+      <div class="icon" id="icon-1">
+        <a href="{{ routes.cart_url }}">Cart</a>
+      </div>
+    </div>
+    
+      <!-- <div class="icon" id="icon-1">
+        Featured
+      </div>
+      <div class="icon" id="icon-2">
+        Mens
+      </div>
+      <div class="icon" id="icon-3">
+        Womens
+      </div>
+      <div class="icon" id="icon-4">
+        Accessories
+      </div>
+      <div class="icon" id="icon-5">
+        Cart
+      </div> 
+      <div class="selector" style="left:0px;"></div>-->
+    
+  </header>
+
   <main role="main">
-    {{ content_for_layout }}
+    <div class="viewport">
+      <div class="content-container">
+        <div class="content">
+        {{ content_for_layout }}
+        </div>
+      </div>
+    </div>
   </main>
+
+  <footer>
+    {% for link in linklists.footer.links %}
+      {% assign child_list_handle = link.title | handleize %}
+      {% if linklists[child_list_handle].links != blank %}
+        <div class="icon" id="icon-1">
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        </div>
+        [{% for childlink in linklists[child_list_handle].links %}
+          <div class="icon" id="icon-1">
+            <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+          </div>
+        {% endfor %}]
+      {% else %}
+        <div class="icon" id="icon-1">
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </footer>
   {{ 'application.js' | asset_url | script_tag }}
 </body>
 

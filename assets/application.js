@@ -68,3 +68,24 @@ document.querySelector('.selector').addEventListener('touchcancel',touchEnd);
 for(var i = 1; i <= 5; i++){
 	document.querySelector('#icon-'+i).addEventListener('click',select);
 }
+
+//Intercept cart addition
+// var forms = document.querySelectorAll('form');
+// forms.forEach(function(form){
+// 	form.onsubmit = submit
+// })
+
+// function submit(event){
+// 	event.preventDefault();
+// 	console.log(event)
+// 	var f_data = new FormData(this);
+// 	debugger;
+// }
+
+
+// fetch('/collections/frontpage').then(function(res){
+// 	return res.text()
+// }).then(function(html){
+// 	console.log(html);
+// 	debugger;
+// })

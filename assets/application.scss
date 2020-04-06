@@ -6,9 +6,9 @@
 }
 header{
 	width:100%;
-	color:white;
-	background-color:black;
-	height:50px;
+	color:black;
+	background-color:white;
+	height:100px;
 	position:fixed;
 	top:0;
 	box-shadow: #111 0px 4px 8px;
@@ -26,7 +26,7 @@ header{
 	background-color:rgba(255,153,51,.5);
 	border:1px solid rgb(255,153,51);
 	box-sizing:border-box;
-	top:0;
+	top:50px;
 }
 .icon{
 	float:left;
@@ -38,6 +38,7 @@ header{
 	border-left:1px solid gray;
 	padding:15px;
 	transition:flex-grow .4s;
+	cursor:pointer;
 }
 .icon.selected{
 	flex-grow:4;
@@ -48,7 +49,7 @@ header{
 	height:100vh;
 	width:100vw;	
 	padding:20px;
-	padding-top:70px;
+	padding-top:120px;
 	float:left;
 	overflow-y:scroll;
 }
@@ -61,18 +62,20 @@ header{
 	height:100vh;
 	width:100vw;
 }
-#page-1{
-	background-color:red;
-}
-#page-2{
-	background-color:yellow;
-}
-#page-3{
-	background-color:green;
-}
-#page-4{
-	background-color:blue;
-}
-#page-5{
-	background-color:purple;
+
+
+.product{
+	&:after{
+		content:'';
+		display:block;
+		clear:both;
+	}
+	h1, form, .descript{
+		margin:10px 0;
+	}
+	img{
+		float:left;
+		padding-right:40px;
+	}
+
 }
