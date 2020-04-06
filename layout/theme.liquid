@@ -9,9 +9,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   {{ content_for_header }} <!-- Header hook for plugins -->
   {{ 'application.scss.css' | asset_url | stylesheet_tag }}
+  <script src="https://kit.fontawesome.com/53ee3a3226.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Sans&family=Roboto&display=swap" rel="stylesheet">
 </head>
-<body>
-{% if 1==2 %}
+<body class="{{ template }}">
+<!--{% if 1==2 %}
   {% for link in linklists.main-menu.links %}
     {% assign child_list_handle = link.title | handleize %}
     {% if linklists[child_list_handle].links != blank %}
@@ -37,7 +39,7 @@
       {{ 'register' | customer_register_link }}
     {% endif %}
   {% endif %}
-{% endif %}
+{% endif %}-->
 
 <header>
     <div style="height:50px; text-align:center;">
@@ -45,27 +47,16 @@
     </div>
     
     <div class="icon-bar">
+      <span style="display:none;">{% increment icon-num %}</span>
     {% for link in linklists.main-menu.links %}
-      {% assign child_list_handle = link.title | handleize %}
-      {% if linklists[child_list_handle].links != blank %}
-        <div class="icon" id="icon-1">
+        <div class="icon" id="icon-{% increment icon-num %}">
+          {% if template.name == 'index' %}
+          <span>{{ link.title }}</span>
+          {% else %}
           <a href="{{ link.url }}">{{ link.title }}</a>
+          {% endif %}
         </div>
-        [{% for childlink in linklists[child_list_handle].links %}
-          <div class="icon" id="icon-1">
-            <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
-          </div>
-        {% endfor %}]
-      {% else %}
-        <div class="icon" id="icon-1">
-          <a href="{{ link.url }}">{{ link.title }}</a>
-        </div>
-      {% endif %}
     {% endfor %}
-
-      <div class="icon" id="icon-1">
-        <a href="{{ routes.cart_url }}">Cart</a>
-      </div>
     </div>
     
       <!-- <div class="icon" id="icon-1">
@@ -82,40 +73,27 @@
       </div>
       <div class="icon" id="icon-5">
         Cart
-      </div> 
-      <div class="selector" style="left:0px;"></div>-->
+      </div> </div>-->
+      
     
   </header>
 
   <main role="main">
     <div class="viewport">
       <div class="content-container">
-        <div class="content">
+        
         {{ content_for_layout }}
-        </div>
+
       </div>
     </div>
   </main>
 
-  <footer>
-    {% for link in linklists.footer.links %}
-      {% assign child_list_handle = link.title | handleize %}
-      {% if linklists[child_list_handle].links != blank %}
-        <div class="icon" id="icon-1">
-          <a href="{{ link.url }}">{{ link.title }}</a>
-        </div>
-        [{% for childlink in linklists[child_list_handle].links %}
-          <div class="icon" id="icon-1">
-            <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
-          </div>
-        {% endfor %}]
-      {% else %}
-        <div class="icon" id="icon-1">
-          <a href="{{ link.url }}">{{ link.title }}</a>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </footer>
+  <div class="cart-btn"><a href='/cart'><i class="fas fa-shopping-cart"></i></a></div>
+
+  <!-- <footer>
+    <a href="/cart">cart</a>
+  </footer> -->
+
   {{ 'application.js' | asset_url | script_tag }}
 </body>
 

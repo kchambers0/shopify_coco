@@ -12,6 +12,17 @@ header{
 	position:fixed;
 	top:0;
 	box-shadow: #111 0px 4px 8px;
+	z-index:5;
+}
+footer{
+	width:100%;
+	color:black;
+	background-color:white;
+	height:50px;
+	position:fixed;
+	bottom:0;
+	border-top:1px solid black;
+	z-index:5;
 }
 .icon-bar::after{
 	content:'';
@@ -23,10 +34,11 @@ header{
 	height:50px;
 	width:calc(100vw/5);
 	position:absolute;
-	background-color:rgba(255,153,51,.5);
-	border:1px solid rgb(255,153,51);
+	background-color:rgba(96,180,248,.5);
+	border:1px solid rgb(96,180,248);
 	box-sizing:border-box;
 	top:50px;
+	z-index:10;
 }
 .icon{
 	float:left;
@@ -49,9 +61,11 @@ header{
 	height:100vh;
 	width:100vw;	
 	padding:20px;
-	padding-top:120px;
+	padding-top:100px;
+	padding-bottom:80px;
 	float:left;
 	overflow-y:scroll;
+	background-color:#60b4f8;
 }
 .content-container{
 	height:100vh;
@@ -63,19 +77,108 @@ header{
 	width:100vw;
 }
 
-
+.products{
+	max-width:1024px;
+	margin:0 auto;
+}
 .product{
+	padding:10px;
+	margin:20px 0;
+	box-shadow: #111 0px 4px 8px;
+	position:relative;
+	z-index:1;
+	background:#fff;
 	&:after{
 		content:'';
 		display:block;
 		clear:both;
 	}
+	h1{
+		font-family: 'Inria Sans', sans-serif;
+	}
+	.descript, label{
+		font-family: 'Roboto', sans-serif;
+	}
 	h1, form, .descript{
-		margin:10px 0;
+		margin:0px 0 10px;
+	}
+	form{
+		float:right;
+		select, label, button{
+			
+		}
+		select{
+			width:120px;
+		}
+		label{
+			input{
+				width:50px;
+			}
+		}
+		button{
+			width:50px;
+			height:50px;
+			background-color:#60b4f8;
+			color:#fff;
+			border-radius:50%;
+			padding:10px;
+			margin:10px 0 0;
+			border:none;
+			    vertical-align: super;
+		}
 	}
 	img{
 		float:left;
-		padding-right:40px;
+		padding-right:20px;
 	}
 
+}
+
+.cart-btn a{
+	position:fixed;
+	bottom:20px;
+	right:20px;
+	background-color:rgb(255,153,51);
+	height:50px;
+	width:50px;
+	color:#000;
+	z-index:5;
+	border-radius:50%;
+	text-align:center;
+	padding-top:17px;
+}
+
+@media (max-width:570px){
+	.icon{
+		span{
+			display:none;
+		}
+		font-family: "Font Awesome 5 Free";
+
+		&#icon-1:before{
+			content:'\f005';
+			display:inline;
+			font-weight:900;
+		}
+		&#icon-2:before{
+			content:'\f183';
+			display:inline;
+			font-weight:900;
+		}
+		&#icon-3:before{
+			content:'\f182';
+			display:inline;
+			font-weight:900;
+		}
+		&#icon-4:before{
+			content:'\f70b';
+			display:inline;
+			font-weight:900;
+		}
+		&#icon-5:before{
+			content:'\f02c';
+			display:inline;
+			font-weight:900;
+		}
+	}
 }

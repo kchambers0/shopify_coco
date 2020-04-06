@@ -1,13 +1,33 @@
-{% paginate collection.products by 2 %}
+<div class="content" id="page-1">
+{% paginate collection.products by 5 %}
   <h1>{{ collection.title }}</h1>
   {% for product in collection.products %}
-    <div>
-      <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
-      {{ product.price | money }}
-      {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
-      <a href="{{ product.url | within: collection }}">
-        <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
-      </a>
+    <div class="product">
+      
+      {% for image in product.images %}
+    <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+    {% endfor %}
+    <h1>{{ product.title }}</h1>
+    <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+      <select name="id" id="productSelect">
+        {% for variant in product.variants %}
+          {% if variant.available %}
+            <option value="{{ variant.id }}">
+              {{ variant.title }} - {{ variant.price | money_with_currency }}
+            </option>
+          {% else %}
+            <option disabled="disabled">
+              {{ variant.title }} - sold out
+            </option>
+          {% endif %}
+        {% endfor %}
+      </select>
+      {{ current_variant.price | money }} 
+      <label for="Quantity">quantity</label>
+      <input type="number" id="Quantity" name="quantity" value="1" min="1">
+      <button type="submit" name="add" id="AddToCart">Add to cart</button>
+    </form>
+    <div class="descript">{{ product.description }}</div>
     </div>
   {% else %}
     <p>no matches</p>
@@ -16,3 +36,4 @@
     {{ paginate | default_pagination }}
   {% endif %}
 {% endpaginate %}
+</div>
