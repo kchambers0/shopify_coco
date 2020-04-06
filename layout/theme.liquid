@@ -10,36 +10,8 @@
   {{ content_for_header }} <!-- Header hook for plugins -->
   {{ 'application.scss.css' | asset_url | stylesheet_tag }}
   <script src="https://kit.fontawesome.com/53ee3a3226.js" crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inria+Sans&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body class="{{ template }}">
-<!--{% if 1==2 %}
-  {% for link in linklists.main-menu.links %}
-    {% assign child_list_handle = link.title | handleize %}
-    {% if linklists[child_list_handle].links != blank %}
-      <a href="{{ link.url }}">{{ link.title }}</a>
-      [{% for childlink in linklists[child_list_handle].links %}
-        <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
-      {% endfor %}]
-    {% else %}
-      <a href="{{ link.url }}">{{ link.title }}</a>
-    {% endif %}
-  {% endfor %}
-
-
-  <a href="/cart">cart</a>
-
-
-  {% if shop.customer_accounts_enabled %}
-    {% if customer %}
-      <a href="/account">account</a>
-      {{ 'log out'  | customer_logout_link }}
-    {% else %}
-      {{ 'log in ' | customer_login_link }}
-      {{ 'register' | customer_register_link }}
-    {% endif %}
-  {% endif %}
-{% endif %}-->
 
 <header>
     <div style="height:50px; text-align:center;">
@@ -51,29 +23,13 @@
     {% for link in linklists.main-menu.links %}
         <div class="icon" id="icon-{% increment icon-num %}">
           {% if template.name == 'index' %}
-          <span>{{ link.title }}</span>
+          <span><span class="text">{{ link.title }}</span></span>
           {% else %}
-          <a href="{{ link.url }}">{{ link.title }}</a>
+          <a href="index.html"><span><span class="text">{{ link.title }}</span></span></a>
           {% endif %}
         </div>
     {% endfor %}
     </div>
-    
-      <!-- <div class="icon" id="icon-1">
-        Featured
-      </div>
-      <div class="icon" id="icon-2">
-        Mens
-      </div>
-      <div class="icon" id="icon-3">
-        Womens
-      </div>
-      <div class="icon" id="icon-4">
-        Accessories
-      </div>
-      <div class="icon" id="icon-5">
-        Cart
-      </div> </div>-->
       
     
   </header>
@@ -88,7 +44,9 @@
     </div>
   </main>
 
+{% if template.name != 'cart' %}
   <div class="cart-btn"><a href='/cart'><i class="fas fa-shopping-cart"></i></a></div>
+{% endif %}
 
   <!-- <footer>
     <a href="/cart">cart</a>

@@ -55,15 +55,17 @@ function select(e){
 	move();
 }
 
-document.querySelector('.viewport').addEventListener('touchstart',touchStart);
-document.querySelector('.viewport').addEventListener('touchmove',touchMove);
-document.querySelector('.viewport').addEventListener('touchend',touchEnd);
-document.querySelector('.viewport').addEventListener('touchcancel',touchEnd);
+if(document.querySelector('.selector')){
+	document.querySelector('.viewport').addEventListener('touchstart',touchStart);
+	document.querySelector('.viewport').addEventListener('touchmove',touchMove);
+	document.querySelector('.viewport').addEventListener('touchend',touchEnd);
+	document.querySelector('.viewport').addEventListener('touchcancel',touchEnd);
 
-document.querySelector('.selector').addEventListener('touchstart',touchStart);
-document.querySelector('.selector').addEventListener('touchmove',touchMove);
-document.querySelector('.selector').addEventListener('touchend',touchEnd);
-document.querySelector('.selector').addEventListener('touchcancel',touchEnd);
+	document.querySelector('.selector').addEventListener('touchstart',touchStart);
+	document.querySelector('.selector').addEventListener('touchmove',touchMove);
+	document.querySelector('.selector').addEventListener('touchend',touchEnd);
+	document.querySelector('.selector').addEventListener('touchcancel',touchEnd);
+}
 
 for(var i = 1; i <= 5; i++){
 	document.querySelector('#icon-'+i).addEventListener('click',select);

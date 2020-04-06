@@ -77,7 +77,7 @@ footer{
 	width:100vw;
 }
 
-.products{
+.products, footer .total{
 	max-width:1024px;
 	margin:0 auto;
 }
@@ -148,34 +148,56 @@ footer{
 	padding-top:17px;
 }
 
+.icon-bar a{
+	text-decoration: none;
+	color:#000;
+}
+
+.icon{
+	span{
+		height:0;
+	}
+}
+
+button, .btn{
+	background-color:#60b4f8;
+	color:#fff;
+	border-radius:20px;
+	padding:10px;
+	margin:10px 0 0;
+	border:none;
+	display:inline-block;
+	text-decoration: none;
+}
+
 @media (max-width:570px){
 	.icon{
-		span{
+		span .text{
 			display:none;
 		}
 		font-family: "Font Awesome 5 Free";
 
-		&#icon-1:before{
+		&#icon-1 span:before{
 			content:'\f005';
 			display:inline;
 			font-weight:900;
 		}
-		&#icon-2:before{
+		&#icon-2 span:before{
 			content:'\f183';
 			display:inline;
 			font-weight:900;
 		}
-		&#icon-3:before{
+		&#icon-3 span:before{
 			content:'\f182';
 			display:inline;
 			font-weight:900;
 		}
-		&#icon-4:before{
+		&#icon-4 span:before{
 			content:'\f70b';
 			display:inline;
 			font-weight:900;
 		}
-		&#icon-5:before{
+		&#icon-5 span:before{
 			content:'\f02c';
 			display:inline;
 			font-weight:900;
