@@ -20,12 +20,12 @@
     
     <div class="icon-bar">
       <span style="display:none;">{% increment icon-num %}</span>
-    {% for link in linklists.main-menu.links %}
+    {% for link in linklists.main-menu.links %} 
         <div class="icon" id="icon-{% increment icon-num %}">
           {% if template.name == 'index' %}
           <span><span class="text">{{ link.title }}</span></span>
           {% else %}
-          <a href="index.html"><span><span class="text">{{ link.title }}</span></span></a>
+          <a href="index.html?page={{ icon-num - 1 }}"><span><span class="text">{{ link.title }}</span></span></a>
           {% endif %}
         </div>
     {% endfor %}

@@ -73,6 +73,10 @@ for(var i = 1; i <= 5; i++){
 	});
 }
 
+if(location.search){
+	select(location.search.substr(window.location.search.indexOf('=')+1)-2); 
+}
+
 //Intercept cart addition
 // var forms = document.querySelectorAll('form');
 // forms.forEach(function(form){
