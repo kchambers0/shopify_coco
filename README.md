@@ -3,6 +3,7 @@
 This is a demo for shopify. You can view the demo by going to (https://coconutclothinc.myshopify.com/index.html) and submitting the password "unaigg"
 
 ##Setup
+
 Setup was easy enough. After creating a Shopify partners account I was able to create a development store. Once I had, all that was needed to do was to download a CLI utility called "Theme kit" and run a command to create a new theme and then select it in the admin panel of the online store. I also found that I can create dummy data from the Shopify Developer Tools.
 
 ##Layout
