@@ -116,8 +116,8 @@ footer{
 			}
 		}
 		button{
-			width:50px;
-			height:50px;
+			width:40px;
+			height:40px;
 			background-color:#60b4f8;
 			color:#fff;
 			border-radius:50%;
@@ -157,6 +157,19 @@ footer{
 	span{
 		height:0;
 	}
+}
+
+.right{
+	float:right;
+	p{
+		display:inline;
+	}
+}
+
+.page-title{
+	margin-top:20px;
+	font-family: 'Inria Sans', sans-serif;
+	color:#fff;
 }
 
 button, .btn{

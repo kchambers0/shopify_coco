@@ -50,8 +50,8 @@ function move(){
 		document.querySelector('.selector').style.transition="";
 	},400)
 }
-function select(e){
-	selected=parseInt(e.target.id.substr(-1,1))-1;
+function select(num){
+	selected=num;
 	move();
 }
 
@@ -68,7 +68,9 @@ if(document.querySelector('.selector')){
 }
 
 for(var i = 1; i <= 5; i++){
-	document.querySelector('#icon-'+i).addEventListener('click',select);
+	document.querySelector('#icon-'+i).addEventListener('click',function(e){
+		select(parseInt(this.id.substr(-1,1))-1)
+	});
 }
 
 //Intercept cart addition
